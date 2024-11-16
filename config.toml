@@ -1,0 +1,23 @@
+# The URL the site will be built for
+base_url = "https://wrench56.github.io"
+
+theme = "terminimal"
+
+compile_sass = true
+
+build_search_index = true
+
+[markdown]
+highlight_code = true
+highlight_theme = "one-dark"
+
+[extra]
+# Put all your custom variables here
+
+logo_text = "Wrench56's Blog"
+author = "Wrench56"
+
+menu_items = [
+    {name = "blog", url = "$BASE_URL"},
+    {name = "github", url = "https://github.com/Wrench56", newtab = true},
+]
