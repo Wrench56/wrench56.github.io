@@ -19,5 +19,6 @@ author = "Wrench56"
 
 menu_items = [
     {name = "blog", url = "$BASE_URL"},
+    {name = "archive", url = "$BASE_URL/archive"},
     {name = "github", url = "https://github.com/Wrench56", newtab = true},
 ]
