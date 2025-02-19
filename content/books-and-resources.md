@@ -9,11 +9,11 @@ This post should be a constantly updated one enumerating all the books I've read
 
 ## Books
 
-[Modern Operating Systems 4th Edition --- Andrew Tanenbaum](https://github.com/lighthousand/books/blob/master/Modern Operating Systems 4th Edition--Andrew Tanenbaum.pdf)
+[Modern Operating Systems 4th Edition --- Andrew Tanenbaum](https://github.com/lighthousand/books/blob/master/Modern%20Operating%20Systems%204th%20Edition--Andrew%20Tanenbaum.pdf)
 
 A must read book for low-level enthusiasts. It explains operating systems from zero with connecting it to history as well so that you see the exact evolution. The book itself is quite modern and still applies today conceptually.
 
-[Compilers: Principles, Techniques, and Tools](https://github.com/lighthousand/books/blob/master/Dragon Book Compilers Principle Techniques and Tools 2nd Edtion.pdf)
+[Compilers: Principles, Techniques, and Tools](https://github.com/lighthousand/books/blob/master/Dragon%20Book%20Compilers%20Principle%20Techniques%20and%20Tools%202nd%20Edtion.pdf)
 
 **To be fully read** An amazing book to get introduced to what LLVM accomplishes. 
 
