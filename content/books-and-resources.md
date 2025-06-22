@@ -27,6 +27,9 @@ Another must read for any OOP user. Describes high-level strategies and patterns
 
 A great quick reference for design patterns.
 
+[Linux Inside](https://github.com/0xAX/linux-insides)
+
+An amazing guide from 0xAX (as always) on Linux internals. Well structured and goes quite in-depth into the internals. I would recommend it for any OS developer in general. 0xAX's blog on NASM is also spot on and discusses many of the "secrets" in NASM. So unless you want to read the NASM manual again and again (which eventually you WILL do), their guide is a good place to "steal" tricks from.
 
 ## Movies
 
