@@ -21,6 +21,10 @@ A must read book for low-level enthusiasts. It explains operating systems from z
 
 Another must read for any OOP user. Describes high-level strategies and patterns that makes you better and planning and implementing complex OOP applications.
 
+[Practical Vim](https://dokumen.pub/practical-vim-edit-text-at-the-speed-of-thought-2nbsped-1680501275-978-1680501278.html)
+
+Great for minimalist Vim users. I prefer to keep plugins at a minimum and some of these tricks help me drop a plugin or two from my workflow. It is definitely a more beginner friendly book.
+
 ## Websites
 
 [Refactoring Guru](https://refactoring.guru/design-patterns)
