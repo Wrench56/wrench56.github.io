@@ -35,6 +35,10 @@ A great quick reference for design patterns.
 
 An amazing guide from 0xAX (as always) on Linux internals. Well structured and goes quite in-depth into the internals. I would recommend it for any OS developer in general. 0xAX's blog on NASM is also spot on and discusses many of the "secrets" in NASM. So unless you want to read the NASM manual again and again (which eventually you WILL do), their guide is a good place to "steal" tricks from.
 
+[Atlassian's Advanced Git tutorials](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
+
+Learning the basics of Git is quite straightforward and the internet offers MANY guides on it. However once you reach a certain level, your knowledge will stagnate. Most of my Git knowledge comes from actually collaborating on real projects, and as such I am missing subtle but important details of Git. Things like amending or rebasing come up often, but have you heard of Gitk or Git hooks? Or Git gc? If not, Atlassian's Advanced Git guide might help you get to know Git more.
+
 ## Movies
 
 [Erlang: The Movie](https://archive.org/details/ErlangTheMovie)
