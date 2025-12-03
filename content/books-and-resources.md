@@ -25,12 +25,11 @@ Another must read for any OOP user. Describes high-level strategies and patterns
 
 Great for minimalist Vim users. I prefer to keep plugins at a minimum and some of these tricks help me drop a plugin or two from my workflow. It is definitely a more beginner friendly book.
 
-[Computer Architecture --- A Quantitative Approach](https://acs.pub.ro/~cpop/SMPA/Computer%20Architecture%20A%20Quantitative%20Approach%20(5th%20edition).pdf)
-
+[Computer Architecture — A Quantitative Approach](https://acs.pub.ro/~cpop/SMPA/Computer%20Architecture%20A%20Quantitative%20Approach%20%285th%20edition%29.pdf)
 
 **To be fully read** The Bible for computer architecture. Not much else to say here. You want to understand how CPUs work, this is the book you HAVE to read. It does a great job at giving you a full overview of architectures without going too in-depth for some specific topics. There are other books for that, like `Modern Processor Design`. It is a long and exhausting read, but overall definitely worth it.
 
-[Modern Processor Design: Fundamentals of Superscalar Processors](https://acs.pub.ro/~cpop/SMPA/Modern%20Processor%20Design_%20Fundamentals%20of%20Superscalar%20Processors%20(%20PDFDrive%20).pdf)
+[Modern Processor Design: Fundamentals of Superscalar Processors](https://acs.pub.ro/~cpop/SMPA/Modern%20Processor%20Design_%20Fundamentals%20of%20Superscalar%20Processors%20%28%20PDFDrive%20%29.pdf)
 
 **To be fully read** A great follow-up after Hennessy and Patterson's book. Did not read much of it, but so far I like it. It is more focused on superscalar, speculative, and out-of-order CPUs. AMD microarchitecture is mentioned with great detail.
 
