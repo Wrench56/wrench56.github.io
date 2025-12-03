@@ -1,10 +1,7 @@
 # The URL the site will be built for
 base_url = "https://wrench56.github.io"
-
 theme = "terminimal"
-
 compile_sass = true
-
 build_search_index = true
 
 [markdown]
@@ -22,4 +19,9 @@ menu_items = [
     {name = "archive", url = "$BASE_URL/archive"},
     {name = "about me", url = "$BASE_URL/about"},
     {name = "github", url = "https://github.com/Wrench56", newtab = true},
+]
+
+[link_checker]
+skip_prefixes = [
+    "https://acs.pub.ro/"
 ]
