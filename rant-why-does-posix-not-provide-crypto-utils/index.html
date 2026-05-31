@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://wrench56.github.io/style.css">
+    <link rel="stylesheet" href="https://wrench56.github.io/color/blue.css">
+
+    <link rel="stylesheet" href="https://wrench56.github.io/font-hack-subset.css">
+
+    <meta name="description" content="">
+
+    <meta property="og:description" content="">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://wrench56.github.io/rant-why-does-posix-not-provide-crypto-utils/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:title" content="">
+    <meta property="twitter:domain" content="wrench56.github.io">
+    <meta property="twitter:url" content="https://wrench56.github.io/rant-why-does-posix-not-provide-crypto-utils/">
+
+    </head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://wrench56.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Wrench56&#x27;s Blog
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        
+                <nav class="menu">
+            <ul class="menu__inner">
+                <li class="active"><a href="https://wrench56.github.io">blog</a></li>
+            
+                <li><a href="https://wrench56.github.io/archive">archive</a></li>
+            
+                <li><a href="https://wrench56.github.io/about">about me</a></li>
+            
+                <li><a href="https://github.com/Wrench56" target="_blank" rel="noopener noreferrer">github</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://wrench56.github.io/rant-why-does-posix-not-provide-crypto-utils/">Rant: Why does POSIX not provide any Crypto Utils</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            2026-05-31
+        </span>
+
+    </div>
+
+    
+
+        <div class="post-content">
+            <h2 id="background">Background</h2>
+<p>Readers of my code and/or my blog will probably know that I am trying to always follow POSIX specification, especially when writing Shellscripts, to be as compatible with other systems as possible. This is due to the fact that I am using multiple platforms, particularly many Linux distributions and FreeBSD, along with some embedded systems. It is rather convenient when my automations run on each and every platform I run on. Today, I was/am writing a tool for storing and distributing patches, <a href="https://github.com/Wrench56/patchvault-template">PatchVault</a>, when I encountered the issue of distributing <a href="https://github.com/freebsd/freebsd-ports/blob/main/editors/2bsd-vi/distinfo">FreeBSD-like distinfos</a>.</p>
+<h2 id="the-problem">The problem</h2>
+<p>The POSIX standard does not provide any ways of creating cryptographically safe hashes. The only utility which comes close to helping one distribute distinfos is <a href="https://pubs.opengroup.org/onlinepubs/9799919799/utilities/cksum.html#top">cksum(1)</a>. Please note, that there are no flags provided in the specification at all!</p>
+<p>Now, some *BSD or Linux users reading have probably used one of the members of the <a href="https://man.freebsd.org/cgi/man.cgi?query=shasum&amp;sektion=1&amp;manpath=freebsd-release-ports">shasum(1) utility family</a>. Conveniently, it provides the option to generate a file containing the file paths and their hashes. Amazing tool! You can quickly generate SHA256 hashes for a tree and then just check against it using the <code>-c/--check</code> flag, providing similar functionality to <a href="https://man.freebsd.org/cgi/man.cgi?mtree(8)">mtree(8)</a>.</p>
+<p>Let's take a look at a few (and by far not all) popular systems and see if they provide a unified checksum/hashsum checkfile interface!</p>
+<h3 id="freebsd">FreeBSD</h3>
+<p>A similar (albeit incompatible) format is used for distinfo files on the FreeBSD ports tree. Namely, <a href="https://man.freebsd.org/cgi/man.cgi?query=sha256">sha256</a>. It generates an output like (for <code>sha256 &lt;file&gt;</code>) <code>SHA256 (.sh_history) = 3071da2af8b82b4aeb9a5a40c497ceb5ef608f35034cf72987fad994c4ee2727</code>. Technically, Linux does not have any tool (by default) that produces the same output. Using <a href="https://perldoc.perl.org/shasum">shasum(1)</a> you can get a similar output file, but most definitely not the same format. Linux <code>shasum(1)</code> does not note the used algorithm.</p>
+<h3 id="linux">Linux</h3>
+<p>Now, do you still remember <code>cksum(1)</code>? Well, technically, <code>cksum -a sha256 &lt;file&gt;</code> on Linux does produce the 1:1 output from above. Great! Two systems, two tools, one output. Neither of the above are a POSIX compatible way of implementing what I want of course. But I am not a purist. If systems unanimously changed a tool to do something beyond POSIX, I am happy to use that. So let's see what other systems do:</p>
+<h3 id="qnx">QNX</h3>
+<p>Of course, as a POSIX certified OS, QNX does have <a href="https://www.qnx.com/developers/docs/6.5.0SP1.update/com.qnx.doc.neutrino_utilities/c/cksum.html">cksum(1)</a>. It even provides some extensions, like the <code>-v</code> flag... No way to check against an output file, so that is a no-go. Ergo, QNX does not provide a way to check against a file of sha256 sums by default.</p>
+<h3 id="aix">AIX</h3>
+<p>Well, let's see what AIX did. Of course, we have <a href="https://www.ibm.com/docs/en/aix/7.3.0?topic=c-cksum-command">cksum(1)</a> again. Well, no SHA256 extension here either. That's a bummer. No check either.</p>
+<h3 id="z-os">z/OS</h3>
+<p>"Funnily" enough, z/OS provides a different <a href="https://www.ibm.com/docs/en/zos/3.2.0?topic=descriptions-cksum-calculate-display-checksums-byte-counts">cksum(1)</a> implementation compared to AIX. Still, no check, on SHA256.</p>
+<h3 id="solaris">Solaris</h3>
+<p>Similarly to AIX, <a href="https://docs.oracle.com/cd/E26502_01/html/E29030/cksum-1.html">cksum(1)</a> on Solaris is very close to the original POSIX specification without any extensions, except some <a href="https://www.smartos.org/man/1/cksum">largefiles(7)</a> differences. However, Solaris provides <a href="https://docs.oracle.com/cd/E88353_01/html/E37839/digest-1.html">digest(1)</a> which can be used in the format <code>digest -v -a sha256 &lt;file&gt;</code> to produce the same output seen from <code>sha256 &lt;file&gt;</code> on FreeBSD: <code>sha256 (/etc/motd) = e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</code>. Another operating system, another utility!</p>
+<h3 id="smartos">SmartOS</h3>
+<p>Unsurprisingly, <a href="https://www.smartos.org/man/1/cksum">same</a> as Solaris.</p>
+<h2 id="solutions">Solutions?</h2>
+<p>Well, it is about 2AM here, so it is about time I wrap this up and finish what I wanted in my initial project, lol! Well, turns out, we have two separate ways of solving this problem (none of which I like much).</p>
+<h3 id="1st-openssl">1st: OpenSSL</h3>
+<p>Albeit slightly differently formatted (whitespaces do not matter when checking, so beyond visual differences there isn't any), OpenSSL does give you the same format as FreeBSD's distinfo files! You have to do something along the lines of <code>openssl dgst -sha256 &lt;file&gt;</code> to see it! Nice! The above systems <strong>should</strong> support OpenSSL so this is a success! (Well, technically, I do not believe OpenSSL would be recommended on z/OS due to their in-house cryptography solutions.)</p>
+<p>Of course, for a simple patch applying script, why do I have to have a third-party (and rather heavy) utility/library?</p>
+<h3 id="2nd-good-old-posix">2nd: Good old POSIX...</h3>
+<p>Well, you can always count on <a href="https://pubs.opengroup.org/onlinepubs/009604499/utilities/cmp.html">cmp(1)</a>! Just simply generate a CRC32 file using <code>cksum(1)</code> and compare a locally created checksum file against the remotely fetched one. Of course I would recommend to <a href="https://pubs.opengroup.org/onlinepubs/9699919799/utilities/sort.html">sort(1)</a> it beforehand! (Just to avoid strangeness in file ordering)</p>
+<h2 id="so-what">So what?</h2>
+<p>Well, The question is rather "Why?". Why does POSIX not give a way of generating SHA256 (or any other cryptographically safe hashes) out of the box? What is holding them back from making <code>shasum(1)</code> standard?</p>
+<p>Clearly, they are reluctant to "standardize" cryptography. This is evident from <a href="https://pubs.opengroup.org/onlinepubs/9799919799/functions/crypt.html#top">crypt(3)</a>.</p>
+<blockquote>
+<p>The algorithm is implementation-defined.</p>
+</blockquote>
+<p>Also, they don't quite force this on you, as you have the <code>ENOSYS</code> escape hatch:</p>
+<blockquote>
+<p>[ENOSYS]
+The functionality is not supported on this implementation.</p>
+</blockquote>
+<p>So what is the reason behind this?</p>
+<p>Well, the Arch Linux manpages for <a href="https://man.archlinux.org/man/crypt.3.en#PORTABILITY_NOTES">crypt(3)</a> states:</p>
+<blockquote>
+<p>Due to historical restrictions on the export of cryptographic software from the USA, crypt is an optional POSIX component.</p>
+</blockquote>
+<p>Aha! Politics. Should have guessed it :D
+Unfortunate, that because of this, we do not have a unified cryptographic interface, something rather important in my opinion.</p>
+<p>Until IEEE POSIX decides to clean up this archaic state, I am stuck with modifying the <code>cksum(1)</code> output into something like:</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">CRC32 (&lt;file&gt;) &lt;hash&gt;
+</span></code></pre>
+<p>so that it goes well with SHA256:</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">SHA256 (&lt;file&gt;) &lt;hash&gt;
+</span><span style="color:#abb2bf;">CRC32  (&lt;file&gt;) &lt;hash&gt;
+</span></code></pre>
+<p>This ensures that systems that don't have the SHA256 distinfo-looking output AND OpenSSL can just use <code>cksum(1)</code> and not just fail. Of course, it doesn't solve the problem. At least there is some error detection. Meh...</p>
+
+        </div>
+
+        
+            <div class="pagination">
+                <div class="pagination__title">
+                    <span class="pagination__title-h">Thanks for reading! Read other posts?</span>
+                    <hr />
+                </div>
+                <div class="pagination__buttons">
+                        <span class="button previous">
+                            <a href="https://wrench56.github.io/books-and-resources/">
+                                <span class="button__icon">←</span>&nbsp;
+                                <span class="button__text">Books and Resources</span>
+                            </a>
+                        </span>
+                    
+                    </div>
+            </div>
+        
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright">
+                        <span>© 
+    2026
+ Wrench56</span>
+                    <span class="copyright-theme">
+                        <span class="copyright-theme-sep">:: </span>
+                        Theme: <a href="https://github.com/pawroman/zola-theme-terminimal/">Terminimal</a> by pawroman
+                    </span>
+                </div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>
