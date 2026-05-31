@@ -33,7 +33,7 @@ Great for minimalist Vim users. I prefer to keep plugins at a minimum and some o
 
 **To be fully read** A great follow-up after Hennessy and Patterson's book. Did not read much of it, but so far I like it. It is more focused on superscalar, speculative, and out-of-order CPUs. AMD microarchitecture is mentioned with great detail.
 
-[Memory Systems: Cache, DRAM, Disk](https://picture.iczhiku.com/resource/eetop/WhiDehfRtzeTyVNn.pdf)
+[Memory Systems: Cache, DRAM, Disk](https://user.eng.umd.edu/~blj/memory/Book-FrontMatter.pdf)
 
 **To be fully read** Recommended Bible for memory subsystem engineers. Latency, bandwidth, prefetching, DRAM timing are detailed. It is a good read for anyone, our job does not stop at understanding CPU design. Seemingly shows some of the physics and chemistry behind it all.
 
