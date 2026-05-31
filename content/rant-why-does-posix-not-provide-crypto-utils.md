@@ -35,6 +35,15 @@ Well, let's see what AIX did. Of course, we have [cksum(1)](https://www.ibm.com/
 
 "Funnily" enough, z/OS provides a different [cksum(1)](https://www.ibm.com/docs/en/zos/3.2.0?topic=descriptions-cksum-calculate-display-checksums-byte-counts) implementation compared to AIX. Still, no check, on SHA256.
 
+### Solaris
+
+Similarly to AIX, [cksum(1)](https://docs.oracle.com/cd/E26502_01/html/E29030/cksum-1.html) on Solaris is very close to the original POSIX specification without any extensions, except some [largefiles(7)](https://www.smartos.org/man/1/cksum) differences. However, Solaris provides [digest(1)](https://docs.oracle.com/cd/E88353_01/html/E37839/digest-1.html) which can be used in the format `digest -v -a sha256 <file>` to produce the same output seen from `sha256 <file>` on FreeBSD: `sha256 (/etc/motd) = e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`. Another operating system, another utility!
+
+
+### SmartOS
+
+Unsurprisingly, [same](https://www.smartos.org/man/1/cksum) as Solaris.
+
 ## Solutions?
 
 Well, it is about 2AM here, so it is about time I wrap this up and finish what I wanted in my initial project, lol! Well, turns out, we have two separate ways of solving this problem (none of which I like much).
