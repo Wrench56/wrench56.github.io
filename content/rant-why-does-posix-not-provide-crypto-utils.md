@@ -17,7 +17,7 @@ Let's take a look at a few (and by far not all) popular systems and see if they 
 
 ### FreeBSD
 
-A similar (albeit incompatible) format is used for distinfo files on the FreeBSD ports tree. Namely, [sha256](https://man.freebsd.org/cgi/man.cgi?query=sha256). It generates an output like (for `sha256 <file>`) `SHA256 (.sh_history) = 3071da2af8b82b4aeb9a5a40c497ceb5ef608f35034cf72987fad994c4ee2727`. Technically, Linux does not have any tool (by default) that produces the same output. Using [shasum(1)](https://linux.die.net/man/1/shasum) you can get a similar output file, but most definitely not the same format. Linux `shasum(1)` does not note the used algorithm.
+A similar (albeit incompatible) format is used for distinfo files on the FreeBSD ports tree. Namely, [sha256](https://man.freebsd.org/cgi/man.cgi?query=sha256). It generates an output like (for `sha256 <file>`) `SHA256 (.sh_history) = 3071da2af8b82b4aeb9a5a40c497ceb5ef608f35034cf72987fad994c4ee2727`. Technically, Linux does not have any tool (by default) that produces the same output. Using [shasum(1)](https://perldoc.perl.org/shasum) you can get a similar output file, but most definitely not the same format. Linux `shasum(1)` does not note the used algorithm.
 
 ### Linux
 
